@@ -19,4 +19,4 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         branch: test
         title: "Feature Completed"
-        body: "This pull request is to merge a completed feature from the dev branch to the test branch."
+        body: "This pull request is to merge a completed feature from the dev branch to the test branch. It has taken me an hour to complete this"
