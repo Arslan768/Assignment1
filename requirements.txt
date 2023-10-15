@@ -4,3 +4,8 @@ pickle
 sys
 os
 unittest
+joblib
+flask
+seaborn
+pytest
+pylint
