@@ -4,5 +4,4 @@ flask
 seaborn
 pytest
 pylint
-numpy
 flake8
