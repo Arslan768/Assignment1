@@ -5,3 +5,4 @@ seaborn
 pytest
 pylint
 flake8
+numpy
