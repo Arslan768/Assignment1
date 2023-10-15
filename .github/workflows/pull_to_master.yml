@@ -11,11 +11,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          branch: master
-          title: "Merge from test to master"
-          body: "This pull request is to merge changes from the test branch to the master branch."
-          repository: "Arslan768/Assignment1"
+    - name: Checkout Code
+      uses: actions/checkout@v2
+
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        branch: master
+        title: "Feature Completed"
+        body: "This pull request is to merge a completed feature from dev to master."
