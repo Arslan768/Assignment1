@@ -1,0 +1,20 @@
+name: Create Pull Request to Master
+
+on:
+  workflow_run:
+    workflows: ["Unit Testing"]
+    types:
+      - completed
+
+jobs:
+  create_pr:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: master
+          title: "Merge from test to master"
+          body: "This pull request is to merge changes from the test branch to the master branch."
