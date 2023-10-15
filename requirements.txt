@@ -11,3 +11,4 @@ pytest
 pylint
 jsonify
 request
+numpy
