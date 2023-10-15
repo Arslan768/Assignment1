@@ -18,3 +18,4 @@ jobs:
           branch: master
           title: "Merge from test to master"
           body: "This pull request is to merge changes from the test branch to the master branch."
+          repository: "Arslan768/Assignment1"
