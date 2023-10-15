@@ -25,4 +25,4 @@ jobs:
     - name: Run Flake8
       run: python -m flake8 Model Test
       env:
-    	FLAKE8OPTS: --config=.flake8
+        FLAKE8OPTS: --config=.flake8
