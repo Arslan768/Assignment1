@@ -1,23 +1,27 @@
-from flask import Flask, request, jsonify
-import joblib
+import pickle
+from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
 
-# Load the pre-trained Iris model
-model = joblib.load('Model/model.pkl')
+with open('model.pkl', 'rb') as model_file:
+    model = pickle.load(model_file)
 
-@app.route('/predict', methods=['POST'])
-def predict():
-    try:
-        data = request.get_json()
-        sepal_length = data['sepal_length']
-        sepal_width = data['sepal_width']
-        petal_length = data['petal_length']
-        petal_width = data['petal_width']
-        prediction = model.predict([[sepal_length, sepal_width, petal_length, petal_width]])[0]
-        return jsonify({' PREDICTION : ': prediction})
-    except Exception as e:
-        return jsonify({'error': str(e)})
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    if request.method == 'POST':
+        # Get user input from the form
+        sepal_length = float(request.form['sepal_length'])
+        sepal_width = float(request.form['sepal_width'])
+        petal_length = float(request.form['petal_length'])
+        petal_width = float(request.form['petal_width'])
+
+        # Make a prediction using the loaded model
+        input_data = [[sepal_length, sepal_width, petal_length, petal_width]]
+        my_prediction = model.predict(input_data)
+
+        return render_template('result.html', prediction=my_prediction[0])
+
+    return render_template('index.html')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
