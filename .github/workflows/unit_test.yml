@@ -3,7 +3,7 @@ name: unit test
 on:
   push:
     branches:
-      - test
+      - dev
 
 jobs:
   test:
