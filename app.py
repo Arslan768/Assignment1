@@ -3,7 +3,7 @@ from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
 
-with open('model.pkl', 'rb') as model_file:
+with open('Model/model.pkl', 'rb') as model_file:
     model = pickle.load(model_file)
 
 @app.route('/', methods=['GET', 'POST'])
