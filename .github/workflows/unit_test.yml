@@ -3,7 +3,6 @@ name: unit test
 on:
   workflow_run:
     workflows: ["pull request"]
-    types: ["opened" , "completed"]
      
 
 jobs:
