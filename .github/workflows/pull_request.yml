@@ -15,4 +15,5 @@ jobs:
 
     - name: Fetch latest changes from source branch
       run: |
+        git checkout test
         git push origin test
