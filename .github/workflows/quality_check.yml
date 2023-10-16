@@ -7,7 +7,7 @@ on:
 
 jobs:
   lint:
-    name: Quality Check
+    name: quality check
     runs-on: ubuntu-latest
 
     steps:
