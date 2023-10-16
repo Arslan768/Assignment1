@@ -2,7 +2,7 @@ name: pull to master
 
 on:
   workflow_run:
-    workflows: ["Unit Testing"]
+    workflows: ["unit test"]
     types:
       - completed
 
