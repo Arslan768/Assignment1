@@ -3,7 +3,7 @@ name: unit test
 on:
   pull_request:
     branches: [test]
-    types: [opened, reopened , closed , synchronize]
+    types: [opened, reopened , closed , synchronize , labeled]
 
 jobs:
   test:
