@@ -1,4 +1,4 @@
-name: Create Pull Request to Master
+name: pull to master
 
 on:
   workflow_run:
