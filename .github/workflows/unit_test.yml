@@ -3,7 +3,8 @@ name: unit test
 on:
   workflow_run:
     workflows: ["pull request"]
-    types: ["completed"]
+    types:
+      - completed
 
 jobs:
   test:
@@ -24,4 +25,3 @@ jobs:
 
     - name: Run Unit Tests
       run: python Test/Test.py
-
