@@ -10,13 +10,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v2
+      - name: Checkout Code
+        uses: actions/checkout@v2
 
-    - name: Create Pull Request
-      uses: peter-evans/create-pull-request@v3
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        branch: test
-        title: "Feature Completed"
-        body: "This pull request is to merge a completed feature from the dev branch to the test branch. It has taken me an hour to complete this"
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: test
+          title: "Feature Completed"
+          body: "This pull request is to merge a completed feature from the dev branch to the test branch. It has taken me an hour to complete this"
+
+      - name: Trigger Unit Test
+        uses: actions/github-script@0.9.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            await github.actions.createWorkflowDispatch({
+              workflow_id: 'unit_test.yml',
+              ref: 'dev'
+            });
