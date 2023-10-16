@@ -15,8 +15,6 @@ jobs:
 
     - name: Fetch latest changes from source branch
       run: |
-        git checkout dev
-        git fetch origin dev:dev
         git checkout test
-        git merge dev
+        git pull origin dev
         git push origin test
