@@ -1,9 +1,10 @@
 name: unit test
 
 on:
-  pull_request:
-    branches: [test]
-    types: [opened, reopened , closed , synchronize , labeled]
+  workflow_run:
+    workflows: ["pull request"]
+    types:
+      - completed
 
 jobs:
   test:
