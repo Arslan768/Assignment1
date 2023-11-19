@@ -1,0 +1,30 @@
+name: docker-workflow
+
+on:
+  push:
+    branch: 
+      - master
+
+
+jobs:
+  build_and_upload_image:
+    runs-on: ubuntu-latest
+
+    steps:
+    
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Login to hub
+      uses: docker/login-action@v1
+      with:
+        username: sameertahir23
+        password: sameer1@3
+
+    - name: build image and upload
+      run: |
+        docker build -t sameertahir23/mlops-images:latest .
+        docker push sameertahir23/mlops-images:latest
+
+    - name: run container
+      run: docker run -d -p 5000:8000 sameertahir23/mlops-images:latest
