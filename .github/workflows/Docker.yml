@@ -3,7 +3,7 @@ name: docker-workflow
 on:
   push:
     branch: 
-      - master
+      - dev
 
 
 jobs:
