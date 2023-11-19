@@ -13,7 +13,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v2
 
-      - name: Create Pull Request
+      - name: Create Pull Request to Test
         uses: peter-evans/create-pull-request@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -21,23 +21,22 @@ jobs:
           title: "Feature Completed"
           body: "This pull request is to merge a completed feature from dev to test."
 
-          
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
         if: success()
-  
+
       - name: Install dependencies
         run: pip install -r requirements.txt
-  
+
       - name: Run Unit Tests
         run: python Test/Test.py
 
       - name: Checkout Code
         uses: actions/checkout@v2
 
-      - name: Create Pull Request
+      - name: Create Pull Request to Master
         uses: peter-evans/create-pull-request@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -45,3 +44,14 @@ jobs:
           title: "Feature Completed"
           body: "This pull request is to merge a completed feature from dev to master."
         if: success()
+
+  trigger_docker_workflow:
+    needs: create_pr
+    if: success()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Docker Workflow
+        uses: actions/workflow-dispatch@v2
+        with:
+          workflow: Docker.yml
+          token: ${{ secrets.GITHUB_TOKEN }}
